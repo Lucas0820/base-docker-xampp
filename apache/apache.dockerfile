@@ -7,5 +7,6 @@ RUN apt-get update && \
     a2enmod rewrite proxy proxy_http
 
 COPY phpmyadmin-proxy.conf /etc/apache2/conf-enabled/
+COPY servername.conf /etc/apache2/conf-enabled/
 
 WORKDIR /var/www/html
