@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>games4you</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
  
 <body>
@@ -23,7 +23,7 @@
             <a href="#">xbox</a>
             <a href="#">Contact</a>
             <a href="#">cart</a>
-            <a href="bestelformulier.html">Bestelformulier</a>
+            <a href="bestelformulier.php">Bestelformulier</a>
         </nav>
 
     </header>
