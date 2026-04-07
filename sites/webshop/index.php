@@ -1,3 +1,8 @@
+<?php
+session_start();
+include'productenarray.php';
+$cartCount = isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0;
+?>
 <!DOCTYPE html>
 <html lang="nl">
  
@@ -8,12 +13,6 @@
 </head>
  
 <body>
-
-<?php
-include'productenarray.php';
-
-
-?>
 
 
 
@@ -27,12 +26,12 @@ include'productenarray.php';
         <h1>games4you</h1>
  
         <nav>
-            <a href="#">Home</a>
+            <a href="index.php">Home</a>
             <a href="#">nintendo</a>
             <a href="#">playstation</a>
             <a href="#">xbox</a>
             <a href="#">Contact</a>
-            <a href="#">cart</a>
+            <a href="winkelwagen.php">Winkelwagen (<?php echo $cartCount; ?>)</a>
             <a href="bestelformulier.php">Bestelformulier</a>
         </nav>
 

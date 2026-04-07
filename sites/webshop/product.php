@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'productenarray.php';
 $product = null;
 if (!empty($_GET['product'])) {
@@ -8,6 +9,26 @@ if (!empty($_GET['product'])) {
             break;
         }
     }
+}
+
+// Handle add to cart
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart']) && $product) {
+    if (!isset($_SESSION['cart'])) {
+        $_SESSION['cart'] = [];
+    }
+    $productId = $product['id'];
+    if (isset($_SESSION['cart'][$productId])) {
+        $_SESSION['cart'][$productId]['quantity']++;
+    } else {
+        $_SESSION['cart'][$productId] = [
+            'id' => $product['id'],
+            'title' => $product['title'],
+            'price' => $product['price'],
+            'quantity' => 1
+        ];
+    }
+    header('Location: ' . $_SERVER['REQUEST_URI']);
+    exit;
 }
 ?>
 <!DOCTYPE html>
@@ -27,6 +48,7 @@ if (!empty($_GET['product'])) {
             <a href="#">playstation</a>
             <a href="#">xbox</a>
             <a href="#">Contact</a>
+            <a href="winkelwagen.php">Winkelwagen (<?php echo isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0; ?>)</a>
             <a href="bestelformulier.php">Bestelformulier</a>
         </nav>
     </header>
@@ -45,7 +67,10 @@ if (!empty($_GET['product'])) {
                             <p><strong>Prijs:</strong> €<?php echo htmlspecialchars($product['price']); ?></p>
                             <p><strong>Sale:</strong> <?php echo $product['sale'] ? 'Ja' : 'Nee'; ?></p>
                             <p>Bekijk meer informatie over dit product en bestel het direct via de knop hieronder.</p>
-                            <a class="product-detail-button" href="bestelformulier.php?product=<?php echo urlencode($product['id']); ?>">Bestel dit product</a>
+                            <form method="post" style="margin-top: 20px;">
+                                <button type="submit" name="add_to_cart" class="product-detail-button">Toevoegen aan winkelwagen</button>
+                            </form>
+                            <a class="product-detail-button" href="bestelformulier.php?product=<?php echo urlencode($product['id']); ?>" style="margin-top: 10px; display: inline-block;">Direct bestellen</a>
                         </div>
                     </div>
                 </div>
