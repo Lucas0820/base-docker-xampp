@@ -13,14 +13,34 @@
 
 <body>
 
+<?php
+include 'productenarray.php';
+$selectedProduct = null;
+if (!empty($_GET['product'])) {
+    foreach ($array['products'] as $product) {
+        if ($product['id'] === $_GET['product']) {
+            $selectedProduct = $product;
+            break;
+        }
+    }
+}
+?>
+
 <div class="container">
 
 <h2>Bestelformulier</h2>
 
+<?php if ($selectedProduct): ?>
+    <div class="selected-product">
+        <strong>Gekozen product:</strong> <?php echo htmlspecialchars($selectedProduct['title']); ?>
+        &ndash; €<?php echo htmlspecialchars($selectedProduct['price']); ?>
+    </div>
+<?php endif; ?>
+
 <form>
 
 <label>Aanhef</label>
-<select required>
+<select name="aanhef" required>
 <option value="">Kies...</option>
 <option>Dhr.</option>
 <option>Mevr.</option>

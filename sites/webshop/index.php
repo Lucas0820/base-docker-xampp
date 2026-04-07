@@ -8,6 +8,16 @@
 </head>
  
 <body>
+
+<?php
+include'productenarray.php';
+
+
+?>
+
+
+
+
  
     <!-- Navigatiebalk -->
     <header>
@@ -49,130 +59,20 @@
         <main>
  
             <h2>games</h2>
- 
             <div class="products">
- 
-                <!-- 20 producten -->
-                <div class="product">
-                    <img src="assets/download (1).jpg">
-                    <p>cyberpunk2077</p>
-                    <span>€40</span>
-                </div>
- 
-                <div class="product">
-                    <img src="assets/download (1).jpg">
-                    <p>gta</p>
-                    <span>€15</span>
-                </div>
- 
-                <div class="product">
-                    <img src="assets/download (1).jpg">
-                    <p>rainbow6siege</p>
-                    <span>€20</span>
-                </div>
- 
-                <div class="product">
-                    <img src="assets/download (1).jpg">
-                    <p>p5 golden</p>
-                    <span>€50</span>
-                </div>
- 
-                <div class="product">
-                    <img src="assets/download (1).jpg">
-                    <p>p3 reload</p>
-                    <span>€30</span>
-                </div>
- 
-                <div class="product">
-                    <img src="assets/download (1).jpg">
-                    <p>subnautica</p>
-                    <span>€15</span>
-                </div>
- 
-                <div class="product">
-                    <img src="assets/download (1).jpg">
-                    <p>subnautica below zero</p>
-                    <span>€20</span>
-                </div>
- 
-                <div class="product">
-                    <img src="assets/download (1).jpg">
-                    <p>Resident Evil Requiem</p>
-                    <span>€60</span>
-                </div>
- 
-                <div class="product">
-                    <img src="assets/download (1).jpg">
-                    <p>elden ring</p>
-                    <span>€30</span>
-                </div>
- 
-                <div class="product">
-                    <img src="assets/download (1).jpg">
-                    <p>Baldurs Gate 3</p>
-                    <span>€50</span>
-                </div>
- 
-                <div class="product">
-                    <img src="assets/download (1).jpg">
-                    <p>Helldivers 2</p>
-                    <span>€50</span>
-                </div>
- 
-                <div class="product">
-                    <img src="assets/download (1).jpg">
-                    <p>The Legend of Zelda: Tears of the Kingdom</p>
-                    <span>€40</span>
-                </div>
- 
-                <div class="product">
-                    <img src="assets/download (1).jpg">
-                    <p>Pokémon Legends: Z-A</p>
-                    <span>€50</span>
-                </div>
- 
-                <div class="product">
-                    <img src="assets/download (1).jpg">
-                    <p>Donkey Kong Bananza</p>
-                    <span>€50</span>
-                </div>
- 
-                <div class="product">
-                    <img src="assets/download (1).jpg">
-                    <p>Mario Kart 8 Deluxe</p>
-                    <span>€30</span>
-                </div>
- 
-                <div class="product">
-                    <img src="assets/download (1).jpg">
-                    <p>reddead redemption</p>
-                    <span>€15</span>
-                </div>
- 
-                <div class="product">
-                    <img src="assets/download (1).jpg">
-                    <p>reddead redemption2</p>
-                    <span>€20</span>
-                </div>
- 
-                <div class="product">
-                    <img src="assets/download (1).jpg">
-                    <p>minecraft</p>
-                    <span>€20</span>
-                </div>
- 
-                <div class="product">
-                    <img src="assets/download (1).jpg">
-                    <p>vbucks</p>
-                    <span>€20</span>
-                </div>
- 
-                <div class="product">
-                    <img src="assets/download (1).jpg">
-                    <p>vbucks</p>
-                    <span>€50</span>
-                </div>
- 
+            <?php
+      foreach ($array['products'] as $key => $value) {
+      ?>
+        <a class="product-link" href="product.php?product=<?php echo urlencode($value['id']); ?>" title="Bekijk <?php echo htmlspecialchars($value['title']); ?>">
+          <div class="product">
+            <img src="<?php echo $value['photos']['photo1']; ?>" alt="<?php echo $value['title']; ?>" />
+            <div class="product_titel"><?php echo $value['title']; ?></div>
+            <div class="prijs_titel">€<?php echo $value['price']; ?></div>
+          </div>
+        </a>
+      <?php
+      }
+      ?>
             </div>
  
         </main>
